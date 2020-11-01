@@ -1,19 +1,18 @@
-ajaxGet("http://localhost:3000/api/teddies/")
-    .then(res => {
-        var teddies = JSON.parse(res);
-        var list = document.getElementById("teddies");
+let list = document.getElementById("teddies");
+let tm = new TeddyManager();
+tm.getAll()
+    .then(teddies => {
         teddies.forEach(teddy => {
-            var line = document.createElement("a");
-            line.setAttribute("href", "teddy.html?id=" + teddy._id);
+            let line = document.createElement("a");
+            line.setAttribute("href", "product.html?id=" + teddy._id);
             line.setAttribute("class", "list-group-item list-group-item-action d-flex");
 
-            var colors ="";
+            let colors ="";
             teddy.colors.forEach((color, index) => {
                 let spaceBetween;
                 (index < teddy.colors.length - 1) ? spaceBetween = " - " : spaceBetween = " ";
                 colors += color + spaceBetween;
             })
-            console.log(colors);
 
             line.innerHTML = `
                                 <img class="mr-3" src="${teddy.imageUrl}" alt="${teddy.name}" width="150" height="100">
@@ -27,6 +26,6 @@ ajaxGet("http://localhost:3000/api/teddies/")
                                 </div>
                             `;
             list.appendChild(line);
-        })
-        .catch(error => console.log(error));
-    });
+            });
+    })
+    .catch(error => console.log(error));

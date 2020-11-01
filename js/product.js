@@ -1,14 +1,13 @@
 let params = (new URL(document.location)).searchParams;
-cart = localStorage;
 
 if(!params.has('id') || params.get('id') == "") {
     window.location.replace("/index.html"); // Redirect if no id param is found
 }
 
-ajaxGet("http://localhost:3000/api/teddies/" + params.get('id'))
-    .then(res => {
-        teddy = JSON.parse(res); // Set Global variable
-        var teddyHTML = document.getElementById("teddy");
+var teddyHTML = document.getElementById("teddy");
+let tm = new TeddyManager();
+tm.getOne(params.get('id'))
+    .then(teddy => {
         teddyHTML.innerHTML = `
                                     <img src="${teddy.imageUrl}" class="card-img-top" alt="${teddy.name}">
                                     <div class="card-body">
@@ -33,8 +32,8 @@ ajaxGet("http://localhost:3000/api/teddies/" + params.get('id'))
             colorSelect.append(option)
         })
         document.getElementById("addToCart").addEventListener("click", () => {
-            addToCart(teddy);
-            document.location.reload(true);
+            cart.add(teddy);
+            cm.save(cart.get());
         });
     })
     .catch(error => console.log(error));
