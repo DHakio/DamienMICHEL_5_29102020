@@ -15,15 +15,15 @@
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-                        <a class="navbar-brand" href="/index.html">
-                            <img src="/images/logo.png" width="100" alt="Orinoco" loading="lazy">
+                        <a class="navbar-brand" href="index.html">
+                            <img src="images/logo.png" width="100" alt="Orinoco" loading="lazy">
                         </a>
                         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                             <li class="nav-item active">
-                                <a class="nav-link" href="/index.html">Accueil<span class="sr-only">(current)</span></a>
+                                <a class="nav-link" href="index.html">Accueil<span class="sr-only">(current)</span></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link cart" href="/cart.html">Panier</a>
+                                <a class="nav-link cart" href="cart.html">Panier</a>
                             </li>
                         </ul>
                     </div>
@@ -31,19 +31,17 @@
               </nav>
         </header>
         <main class="container">
-            <div class="list-group mt-3" id="teddies">
-                <a href="#" class="list-group-item list-group-item-action active">
-                    <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">Ours en peluche</h5>
-                    </div>
-                </a>
+            <div class="jumbotron mt-5">
+                <h1 class="display-4">Merci pour votre commande !</h1>
+                <p class="lead">Votre commande a bien été enregistrée. Elle sera traitée dans les meilleurs délais.</p>
+                <hr class="my-4">
+                <p>Numero de commande : <span id="orderId"></span></p>
+                <p>Prix total de la commande : <span id="totalPrice"></span>€</p>
+                <a class="btn btn-primary btn-lg" href="index.html" role="button">Accueil</a>
             </div>
         </main>
         <footer>
         </footer>
-        <script src="./classes/Ajax.js"></script>
-        <script src="./classes/Teddy.js"></script>
-        <script src="./classes/Cart.js"></script>
-        <script src="./js/index.js"></script>
+        <script src="./js/order.js"></script>
     </body>
 </html>

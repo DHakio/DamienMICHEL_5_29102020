@@ -1,7 +1,7 @@
 let params = (new URL(document.location)).searchParams; // Get params from URL
 
 if(!params.has('id') || params.get('id') == "") {
-    window.location.replace("/index.html"); // Redirect if no id param is found
+    window.location.replace("index.html"); // Redirect if no id param is found
 }
 
 var teddyHTML = document.getElementById("teddy"); // Select element with id="teddy"
@@ -36,4 +36,4 @@ tm.getOne(params.get('id')) // Get Teddy object from id
             cm.save(cart.get());
         });
     })
-    .catch(error => {console.log(error); document.location.replace("/index.html");}); // Redirect to index.html if no teddy found with this id
+    .catch(error => {console.log(error); document.location.replace("index.html");}); // Redirect to index.html if no teddy found with this id

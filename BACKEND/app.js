@@ -35,18 +35,4 @@ app.use('/api/cameras', cameraRoutes);
 app.use('/api/teddies', teddyRoutes);
 app.use('/api/furniture', furnitureRoutes);
 
-// Front implantation
-
-app.get('/', (request, response) => {
-  response.redirect("/index.html") // Index redirection
-})
-app.get('/:page', (request, response) => { // Get html
-  response.sendFile(path.join(__dirname + "/public/"+ request.params.page))
-})
-app.get('/:folder/:ressource', (request, response) => { // Ressources "importation"
-  response.sendFile(path.join(__dirname + "/public/"+ request.params.folder + "/" + request.params.ressource))
-})
-
-// ********************
-
 module.exports = app;

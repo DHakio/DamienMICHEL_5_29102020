@@ -69,7 +69,7 @@ form.addEventListener("submit", function(event) {
                 cart.price().then(price => {
                     cart.empty();
                     cm.save(cart.get());
-                    window.location.replace("/order.html?id=" + orderId + "&total=" + price);
+                    window.location.replace("order.html?id=" + orderId + "&total=" + price);
                 }); 
             })
             .catch(error => console.error("L'envoi a échoué : " + error));
