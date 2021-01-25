@@ -28,8 +28,9 @@ cart.array.forEach((object, index) => {
     
 });
 
-cart.price().then(price => {
-    document.getElementById("total_price").innerText = price/100 + "€";
+cart.price()
+    .then(totalPrice => {
+    document.getElementById("total_price").innerText = totalPrice/100 + "€";
 })
     .catch(error => console.error(error));
 

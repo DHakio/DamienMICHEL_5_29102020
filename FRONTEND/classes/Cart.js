@@ -29,15 +29,20 @@ class Cart {
         return new Promise((resolve, reject) => {
             let tm = new TeddyManager();
             let total = 0;
-            this.array.forEach((id, index) => {
-                tm.getOne(id).then(product => {
-                    total += product.price;
-                    if(index == (this.array.length - 1)) { // Resolve total at last entry
-                        resolve(total);
-                    }
-                })
-                .catch(error => reject(error))
-            })
+            let array = this.array;
+
+            async function sumPrices() {
+                for(let i = 0; i < array.length; i++) {
+                    await tm.getOne(array[i])
+                        .then(teddy => { 
+                            total += teddy.price
+                        })
+                        .catch(error => reject(error));
+                }
+                resolve(total)
+            }
+            
+            sumPrices();
         })
     }
     count() { // Returns number of articles in cart
