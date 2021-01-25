@@ -12,7 +12,7 @@ class Cart {
                     this.array.push(teddyId)
                     resolve("ID ajouté ");
                 })
-                .catch(error => console.error(error));
+                .catch(error => reject(error))
         })
     }
     delete(index) { // Delete one product from cart
@@ -21,7 +21,7 @@ class Cart {
         }
         else {
             this.array.splice(index, 1);
-            console.log("Entrée supprimée");
+            console.log("Entrée supprimée")
         }
     }
 
@@ -36,7 +36,7 @@ class Cart {
                         resolve(total);
                     }
                 })
-                .catch(error => console.error(error))
+                .catch(error => reject(error))
             })
         })
     }
