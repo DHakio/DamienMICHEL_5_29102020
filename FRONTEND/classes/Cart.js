@@ -4,11 +4,25 @@ class Cart {
     }
     array(val) {Array.isArray(val) ? this.array = val : console.log(val + " n'est pas un array")} // Make sure an array is given
 
-    add(product) { // Add a product to cart
-        this.array.push(product);
+    add(teddyId) { // Add a product to cart
+        return new Promise((resolve, reject) => {
+            let tm = new TeddyManager()
+            tm.getOne(teddyId)
+                .then(() => {
+                    this.array.push(teddyId)
+                    resolve("ID ajouté ");
+                })
+                .catch(error => console.error(error));
+        })
     }
     delete(index) { // Delete one product from cart
-        this.array.splice(index, 1);
+        if(this.array[index] == undefined) {
+            console.error("Cette entrée n'existe pas");
+        }
+        else {
+            this.array.splice(index, 1);
+            console.log("Entrée supprimée");
+        }
     }
 
     price() { // Returns cart total price
@@ -30,9 +44,6 @@ class Cart {
         return this.array.length;
     }
 
-    get() { // Return the cart in form of Array
-        return this.array;
-    }
     empty() { // Empty the cart
         this.array = [];
     }

@@ -32,8 +32,10 @@ tm.getOne(params.get('id')) // Get Teddy object from id
             colorSelect.append(option)
         })
         document.getElementById("addToCart").addEventListener("click", () => { // Add teddy's id in the cart when button is clicked
-            cart.add(teddy._id);
-            cm.save(cart.get());
+            cart.add(teddy._id)
+                .then(() => cm.save(cart.array))
+                .catch(error => console.error);
+            
         });
     })
     .catch(error => {console.log(error); document.location.replace("index.html");}); // Redirect to index.html if no teddy found with this id

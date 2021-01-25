@@ -1,6 +1,6 @@
 var list = document.getElementById("teddies");
 
-cart.get().forEach((object, index) => {
+cart.array.forEach((object, index) => {
     let tm = new TeddyManager();
     tm.getOne(object)
         .then(teddy => {
@@ -35,7 +35,7 @@ cart.price().then(price => {
 
 let deleteThisFromCart = (object) => {
     cart.delete(object.dataset.index);
-    cm.save(cart.get());
+    cm.save(cart.array);
     document.location.reload(true);
 } 
 
@@ -48,14 +48,13 @@ form.addEventListener("submit", function(event) {
     for(input of form.getElementsByTagName("input")) {
         if(validation.input(input.name, input.value)) {
             contact[input.name] = input.value;
-            
         }
         else {
             errors.push(`${input.name} n'est pas valide`);
         }
     }
 
-    let products = cart.get();
+    let products = cart.array;
 
     if(errors.length == 0 && products.length != 0) {
         let ajax = new Ajax("http://localhost:3000/api/teddies/order");
@@ -70,7 +69,7 @@ form.addEventListener("submit", function(event) {
                 let cm = new CartManager();
                 cart.price().then(price => {
                     cart.empty();
-                    cm.save(cart.get());
+                    cm.save(cart.array);
                     window.location.replace("order.html?id=" + orderId + "&total=" + price);
                 })
                 .catch(error => console.error(error)); 
