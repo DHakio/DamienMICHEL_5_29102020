@@ -22,6 +22,7 @@ class Cart {
                         resolve(total);
                     }
                 })
+                .catch(error => console.error(error))
             })
         })
     }

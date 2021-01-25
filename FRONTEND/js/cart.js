@@ -24,12 +24,14 @@ cart.get().forEach((object, index) => {
                 list.appendChild(line); 
             }
         })
+        .catch(error => console.error(error));
     
 });
 
 cart.price().then(price => {
     document.getElementById("total_price").innerText = price/100 + "€";
 })
+    .catch(error => console.error(error));
 
 let deleteThisFromCart = (object) => {
     cart.delete(object.dataset.index);
@@ -70,7 +72,8 @@ form.addEventListener("submit", function(event) {
                     cart.empty();
                     cm.save(cart.get());
                     window.location.replace("order.html?id=" + orderId + "&total=" + price);
-                }); 
+                })
+                .catch(error => console.error(error)); 
             })
             .catch(error => console.error("L'envoi a échoué : " + error));
     }

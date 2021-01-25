@@ -4,5 +4,7 @@ if(!params.has('id') || !params.has('total') || params.get('id') == "" || params
     window.location.replace("index.html"); // Redirect if no id or total param is found
 }
 
+
+
 document.getElementById('orderId').innerHTML = params.get('id');
 document.getElementById('totalPrice').innerHTML = params.get('total') / 100;
